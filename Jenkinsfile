@@ -1,19 +1,20 @@
-pipeline {
+pipeline{
     agent any
-    stages('Fetch code'){
-        steps{
-            git branch:'main', url:'git@github.com:tarigonds/vprofile-devops.git',
-            credentialsId: 'github'
+    stages{
+        stage('Fetch') {
+            steps {
+                git branch:'main', url: 'git@github.com:tarigonds/vprofile-devops.git', credentialsId: 'github'
+            }
         }
-    }
-    stage('Build'){
-        steps{
-            sh 'mvn install'
+        stage('Build'){
+            steps{
+                sh 'mvn install'
+            }
         }
-    }
-    stage('Test'){
-        steps{
-            sh 'mvn test'
+        stage('Test'){
+            steps{
+                sh 'mvn test'
+            }
         }
     }
 }
