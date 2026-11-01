@@ -3,7 +3,7 @@ pipeline{
     stages{
         stage('Fetch the code'){
             steps{
-                git branch:'main', url:'https://github.com/tarigonds/vprofile-devops',
+                git branch:'main', url:'git@github.com:tarigonds/vprofile-devops.git',
                     credentialsId: 'github'
                 
             }
