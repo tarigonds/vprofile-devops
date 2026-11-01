@@ -1,4 +1,31 @@
-pipeline{
+pipeline {
+    agent any
+    stages{
+
+        stage('Fetch Code') {
+            steps {
+                git branch: 'paac', url: 'https://github.com/devopshydclub/vprofile-project.git'
+            }
+        }
+        stage('BUILD'){
+            steps {
+                sh 'mvn clean install -DskipTests'
+            }
+            post {
+                success {
+                    echo 'Now Archiving...'
+                    archiveArtifacts artifacts: '**/target/*.war'
+                }
+            }
+        }
+
+        stage('UNIT TEST'){
+            steps {
+                sh 'mvn test'
+            }
+        }
+    }
+}pipeline{
     agent any
     stages{
         stage('Fetch') {
