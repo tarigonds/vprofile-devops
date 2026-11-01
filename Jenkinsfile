@@ -3,8 +3,8 @@ pipeline{
     stages{
         stage('Fetch the code'){
             steps{
-                git branch:'main', url:'https://github.com/Tarigondasiva/vprofile-devops',
-                credentialsId: 'github'
+                git branch:'main', url:'https://github.com/Tarigondasiva/vprofile-devops'
+                
             }
         }
         stage('Build'){
